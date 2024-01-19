@@ -1,0 +1,164 @@
+/* Estilos para la sección de productos */
+.productos-container {
+    display: flex;
+    justify-content: space-around; /* Añadido para distribuir los productos horizontalmente */
+    flex-wrap: wrap; /* Añadido para que los productos pasen a la siguiente fila si no hay suficiente espacio */
+}
+
+.producto {
+    width: calc(33.33% - 40px); /* Añadido para que cada producto ocupe aproximadamente un tercio del ancho */
+    margin: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Cambiado de row a column */
+    text-align: center;
+}
+
+.producto img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Añadido margen inferior */
+}
+
+.producto h3 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+
+.producto p {
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+
+
+
+
+/* general */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background-image: url('./img/barberia_06.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    background-image: url('./img/images.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    top: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Cursive', sans-serif;
+    font-size: 32px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Cursive', sans-serif;
+}
+
+main {
+    margin-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.seccion-fondo {
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+    padding: 50px 0;
+    text-align: left;
+    position: relative;
+}
+
+/* Nuevo contenedor para resaltar el contenido */
+.contenedor-resaltado {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contenido {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.testimonio {
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.testimonio.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cliente-icon {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.testimonio-texto {
+    max-width: 600px;
+    width: 100%;
+}
+

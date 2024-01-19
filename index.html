@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesIndex.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-cGKc/GikGYjNf4nbaatwCpVLGFwZxZuL8vfdDLZHEqeo1TAM9Q1Z2hB+rPb+SDgka34Ods1X0zEDu3y5HAk6tdQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-daw+2r7L5nrtdot5UdY7utpt+JMFmW7BhDM1CJGVGvVIEXPSWvUx+BKe4w4Lp80eAkZElT4W4XE2XkJSa9bpTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-aRn9Jdvl5hWkMMPbPE7LJZd1MktI36FL0Msa6PjnJNqCgl4uFk2EksOeVV5j8rmB2C0GWyd2dXXbQ16BTVAGfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-5+Pe7msSQ9LgzT0dtFNOdF0e/x+xO5fAaHrmKyCxJFuAFejXnXt/5LJsAa+qXf5dt3v8Tyq4rUd7sFeBrI55lA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" integrity="sha512-71K4cCn4Ts5XAcv4jP0hMoLqLvcgCwIdGZs2H5gqYXxftZdsJZM0Z16a4+SqEx2U2/9cUarwKluz3/B4f3rFuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Barbería Alura</title>
+</head>
+
+<body>
+    <header>
+        <div class="overlay"></div>
+        <div class="container">
+            <h1>Barbería Alura</h1>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#experiencia">Experiencia de Clientes</a></li>
+                    <li><a href="producto.html">Productos</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="inicio" class="seccion-fondo">
+            <div class="container contenido">
+                <div class="contenedor-resaltado">
+                    <p>Ubicada en el corazón de la ciudad, la Barbería Alura trae para el mercado lo mejor para tu cabello y barba. Fundada en 2020, ya es destacada en la ciudad y conquista nuevos clientes diariamente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="seccion-fondo">
+            <div class="container contenido">
+                <div class="contenedor-resaltado">
+                    <p>Nuestra misión es proporcionar autoestima y calidad de vida a nuestros clientes.</p>
+                    <p>Ofrecemos profesionales experimentados que están constantemente observando los cambios en la moda para ofrecer a nuestros clientes las últimas tendencias. El servicio tiene un estándar de excelencia y agilidad, garantizando calidad y satisfacción.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiencia" class="seccion-fondo">
+            <div class="container contenido">
+                <div class="contenedor-resaltado">
+                    <h2>Experiencia de Clientes</h2>
+                    <div class="testimonio">
+                        <img src="./img/cliente1.jpg" alt="Cliente 1" class="cliente-icon">
+                        <div class="testimonio-texto">
+                            <h3>Cliente Satisfecho</h3>
+                            <p>¡La Barbería Alura superó mis expectativas! El ambiente acogedor y los profesionales expertos hicieron que mi visita fuera excepcional.</p>
+                        </div>
+                    </div>
+                    <div class="testimonio">
+                        <img src="./img/cliente2.jpg" alt="Cliente 2" class="cliente-icon">
+                        <div class="testimonio-texto">
+                            <h3>Otro Cliente Feliz</h3>
+                            <p>Desde que descubrí la Barbería Alura, no confío mi corte de pelo y barba a ningún otro lugar. ¡La calidad y el servicio son incomparables!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="seccion-fondo">
+            <div class="container contenido">
+                <div class="contenedor-resaltado">
+                    <h2>Contacto</h2>
+                    <div id="calendar"></div>
+                    <div class="redes-sociales">
+                        <a href="https://wa.me/tunumerodetelefono" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/tupagina" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/tuinstagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <!-- Agrega más iconos según sea necesario -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" defer></script>
+    <script src="app.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                // Configuración del calendario
+                // Puedes personalizar más opciones según tu necesidad
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    // Aquí puedes agregar eventos o turnos disponibles
+                    {
+                        title: 'Turno Disponible',
+                        start: '2024-01-20T10:00:00',
+                        end: '2024-01-20T11:00:00',
+                        allDay: false
+                    },
+                    {
+                        title: 'Otro Turno Disponible',
+                        start: '2024-01-21T14:00:00',
+                        end: '2024-01-21T15:00:00',
+                        allDay: false
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>
