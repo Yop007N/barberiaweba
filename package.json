@@ -1,0 +1,41 @@
+{
+  "name": "barberia-alura-website",
+  "version": "1.0.0",
+  "description": "Sitio web profesional para Barbería Alura con sistema de citas y galería de servicios",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s . -l 3000",
+    "dev": "serve -s . -l 3000",
+    "build": "echo 'Proyecto de frontend estático listo para deploy'",
+    "test": "echo 'No hay tests configurados'",
+    "validate": "html-validate *.html",
+    "optimize": "imagemin img/* --out-dir=img/optimized"
+  },
+  "keywords": [
+    "barberia",
+    "peluqueria",
+    "corte de cabello",
+    "barba",
+    "citas",
+    "reservas",
+    "Paraguay"
+  ],
+  "author": "Enrique Bobadilla",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.3",
+    "html-validate": "^8.12.0",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yop007n/barberia-alura-website.git"
+  },
+  "homepage": "https://yop007n.github.io/barberia-alura-website",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesIndex.css">
+    <link rel="stylesheet" href="styles-adicionales.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-cGKc/GikGYjNf4nbaatwCpVLGFwZxZuL8vfdDLZHEqeo1TAM9Q1Z2hB+rPb+SDgka34Ods1X0zEDu3y5HAk6tdQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-daw+2r7L5nrtdot5UdY7utpt+JMFmW7BhDM1CJGVGvVIEXPSWvUx+BKe4w4Lp80eAkZElT4W4XE2XkJSa9bpTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-aRn9Jdvl5hWkMMPbPE7LJZd1MktI36FL0Msa6PjnJNqCgl4uFk2EksOeVV5j8rmB2C0GWyd2dXXbQ16BTVAGfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -75,45 +76,107 @@
                 <div class="contenedor-resaltado">
                     <h2>Contacto</h2>
                     <div id="calendar"></div>
+                    <div class="contacto-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="business-address">Av. Principal 123, Asunción, Paraguay</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span id="business-phone">+595 123 456 789</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span id="business-email">contacto@barberia-alura.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="business-hours">Lunes a Sábado 8:00 - 18:00</span>
+                        </div>
+                    </div>
                     <div class="redes-sociales">
-                        <a href="https://wa.me/tunumerodetelefono" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.facebook.com/tupagina" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/tuinstagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <!-- Agrega más iconos según sea necesario -->
+                        <a href="#" id="whatsapp-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" id="facebook-link" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" id="instagram-link" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" defer></script>
+    <script src="config.js"></script>
     <script src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" defer></script>
     <script>
         $(document).ready(function () {
+            // PROBLEMA ARREGLADO: Configuración mejorada del calendario con eventos dinámicos
             $('#calendar').fullCalendar({
-                // Configuración del calendario
-                // Puedes personalizar más opciones según tu necesidad
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                events: [
-                    // Aquí puedes agregar eventos o turnos disponibles
-                    {
-                        title: 'Turno Disponible',
-                        start: '2024-01-20T10:00:00',
-                        end: '2024-01-20T11:00:00',
-                        allDay: false
-                    },
-                    {
-                        title: 'Otro Turno Disponible',
-                        start: '2024-01-21T14:00:00',
-                        end: '2024-01-21T15:00:00',
-                        allDay: false
+                defaultView: 'agendaWeek',
+                locale: 'es',
+                timezone: 'America/Asuncion',
+                height: 'auto',
+                businessHours: {
+                    dow: [1, 2, 3, 4, 5, 6], // Lunes a Sábado
+                    start: '08:00',
+                    end: '18:00'
+                },
+                minTime: '08:00:00',
+                maxTime: '18:00:00',
+                slotDuration: '01:00:00',
+                events: function(start, end, timezone, callback) {
+                    // Generar turnos disponibles dinámicamente
+                    const events = generateAvailableSlots(start, end);
+                    callback(events);
+                },
+                eventClick: function(event) {
+                    if (event.available) {
+                        if (confirm('¿Desea reservar este turno?')) {
+                            alert('Funcionalidad de reserva en desarrollo. Contacte por WhatsApp para reservar.');
+                        }
                     }
-                ]
+                },
+                dayClick: function(date, jsEvent, view) {
+                    console.log('Día seleccionado:', date.format());
+                }
             });
+
+            // Función para generar turnos disponibles
+            function generateAvailableSlots(start, end) {
+                const events = [];
+                const current = moment(start);
+                const endDate = moment(end);
+
+                while (current.isBefore(endDate)) {
+                    // Solo días laborables (Lunes=1 a Sábado=6)
+                    if (current.day() >= 1 && current.day() <= 6) {
+                        // Generar turnos de 8:00 a 18:00
+                        for (let hour = 8; hour < 18; hour++) {
+                            const slotStart = current.clone().hour(hour).minute(0);
+                            const slotEnd = slotStart.clone().add(1, 'hour');
+
+                            // Simular algunos turnos ocupados aleatoriamente
+                            const isOccupied = Math.random() < 0.3;
+
+                            events.push({
+                                title: isOccupied ? 'Ocupado' : 'Disponible',
+                                start: slotStart.format(),
+                                end: slotEnd.format(),
+                                color: isOccupied ? '#dc3545' : '#28a745',
+                                available: !isOccupied,
+                                className: isOccupied ? 'occupied-slot' : 'available-slot'
+                            });
+                        }
+                    }
+                    current.add(1, 'day');
+                }
+
+                return events;
+            }
         });
     </script>
 </body>
